@@ -1,0 +1,23 @@
+Flask==3.0.3
+flask-cors==4.0.1
+psycopg2-binary>=2.9.12
+requests>=2.32.3
+python-dotenv>=1.0.1
+pydantic>=2.8.2
+pytest>=8.3.2
+
+# Stage-1 triage + document-parsing model (section 5 / step 4.4).
+# google/medgemma-4b-it is multimodal (Gemma 3 architecture) and needs
+# a recent transformers release with Gemma3/MedGemma support, plus
+# accelerate for device placement. It is a GATED model — your
+# HF_API_TOKEN's account must accept the license on the model
+# page first. torch is unpinned to allow pip to find a Python 3.14
+# compatible build.
+transformers>=4.53.0
+accelerate>=0.34.2
+torch
+# If model loading fails with an "unrecognized architecture" or
+# similar error, google/medgemma-4b-it needs a newer transformers
+# release than the one pinned here — check the model card on
+# huggingface.co/google/medgemma-4b-it for the minimum version and
+# bump this pin accordingly.
